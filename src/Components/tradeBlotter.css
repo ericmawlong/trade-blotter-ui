@@ -70,3 +70,7 @@ button:hover {
 .fundSubmit {
   margin: 0 auto;
 }
+
+.successVerify {
+  display: inline; 
+}

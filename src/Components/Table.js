@@ -104,12 +104,12 @@ class Table extends Component {
                     </tbody>
                 </table>
 
-                <div class="popup-container">
+                {/* <div class="popup-container">
                     {this.state.fundForm}
                     <button className = 'verifyTrade' type='submit' onSubmit={this.handleVerify}>
                         VERIFY TRADE
                     </button>
-                </div>
+                </div> */}
             </div>
         )
     }

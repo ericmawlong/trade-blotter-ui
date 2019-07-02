@@ -20,7 +20,7 @@ class AddFund extends Component {
     render() {
         const { open } = this.state;
         return (
-            <div>
+            <div> 
                 <button className="add-fund-btn" onClick={this.onOpenModal}>Add Fund</button>
                 <Modal open={open} onClose={this.onCloseModal} center>
                     <form  onSubmit={this.props.submitHandler}>
