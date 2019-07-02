@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Modal from 'react-responsive-modal';
+import Popup from 'reactjs-popup'
 
 class VerifyButton extends Component {
     constructor(props) {
@@ -6,7 +8,8 @@ class VerifyButton extends Component {
     
         this.state = {
              numberOfFunds: 0,
-             verified: false 
+             verified: false, 
+             open: false 
         }
     }
     
@@ -16,11 +19,28 @@ class VerifyButton extends Component {
         }) : console.log("Max trades to place is only 5")
     }
 
+    onCloseModal = () => {
+        this.setState({ open: false });
+    };
+
+    onOpenModal = () => {
+        this.setState({ open: true });
+    };
+
     render() { 
+        const {open} = this.state 
         return this.state.verified ? (
             <div>
-                <button className='verifyTrade'>PLACE TRADES</button> 
+                <button className='verifyTrade' onClick={this.onOpenModal}>PLACE TRADES</button> 
                 <p align='center'> Successfully Verified trades! </p>
+                <Modal open={open} onClose={this.onCloseModal} center>
+                    <div>
+                        <p align="center">Are you sure you want to place trades?</p>
+                        <form onSubmit={this.submitHandler}>
+                            <button className='verifyTrade' type="submit">Yes</button> 
+                        </form>
+                    </div>
+                </Modal>
             </div>
         ) : (
             <div><button className='verifyTrade' onClick={this.verifyHandler}>VERIFY TRADES</button> </div>
