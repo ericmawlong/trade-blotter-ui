@@ -5,9 +5,18 @@ import './tradeBlotter.css'
 import Modal from 'react-responsive-modal';
 
 class AddFund extends Component {
-    state = {
-        open: false,
-    };
+    
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+            open: false,
+        fundName: '',
+        fundNumber: ''     
+        }
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+    
 
     onOpenModal = () => {
         this.setState({ open: true });
@@ -17,30 +26,48 @@ class AddFund extends Component {
         this.setState({ open: false });
     };
 
+    // addFund = () => {
+    //     //const  {addFund} = this.props; 
+    //     return 
+    // }
+
+    onSubmit = (event) => {
+        // const {addFund} = this.props; 
+        event.preventDefault();
+        console.log(this.state.fundName);
+        this.props.addFund(this.state.fundName, this.state.fundNumber)
+        // addFund(this.state.fundName, this.state.fundNumber);
+        // this.setState({fundNumber:''});
+    }
+
+    onChange = (event) => 
+    this.setState({ 
+        [event.target.id]: event.target.value
+    });
+
     render() {
         const { open } = this.state;
         return (
+<<<<<<< HEAD
             <div> 
                 <button className="add-fund-btn" onClick={this.onOpenModal}>Add Fund</button>
+=======
+            <div>
+                <button className="add-fund-btn" onClick={this.onOpenModal}>+ Add Fund</button>
+
+>>>>>>> 22eed4292f9dcea0be7241ab76dca1819b7c8d38
                 <Modal open={open} onClose={this.onCloseModal} center>
-                    <form  onSubmit={this.props.submitHandler}>
+                    <form >
                         <div>
                             <label>Fund Number</label>
-                            <input type='text' name='fundNumber' value={this.props.fundNumber} onChange={this.props.handleAdd}/>
+                            <input id="fundNumber" type='text' name='fundNumber' value={this.state.fundNumber} onChange={this.onChange}/>
                         </div>
                         <div>
                             <label>Fund Name</label>
-                            <input type='text' name='fundName' value={this.props.fundName} onChange={this.props.handleAdd}/>
+                            <input id="fundName" type='text' name='fundName' value={this.state.fundName} onChange={this.onChange}/>
                         </div>
-                        {/* <div>
-                            <label>Rating</label>
-                            <input type='text' name='rating' value={this.props.rating} onChange={this.props.handleAdd}/>
-                        </div>
-                        <div>
-                            <label>Investment Currency</label>
-                            <input type='text' name='invCurr' value={this.props.invCurr} onChange={this.props.handleAdd}/>
-                        </div> */}
-                        <button className='fundSubmit' onSubmit={this.props.handleAdd}>Submit</button>
+
+                        <button className='fundSubmit' type='submit' onClick={this.onSubmit}>Submit</button>
                     </form>
                 </Modal>
             </div>
