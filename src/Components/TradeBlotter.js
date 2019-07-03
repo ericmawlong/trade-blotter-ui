@@ -8,7 +8,6 @@ class TradeBlotter extends Component {
         return (
             <div>
                 <Table />
-                <AddFund align='right' />  
                 <VerifyButton />    
             </div>
         )

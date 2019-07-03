@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import Modal from 'react-responsive-modal';
 import Popup from 'reactjs-popup'
+import Axios from 'axios';
 
 class VerifyButton extends Component {
+    
     constructor(props) {
         super(props)
     
@@ -12,12 +14,6 @@ class VerifyButton extends Component {
              open: false 
         }
     }
-    
-    verifyHandler = (numberOfFunds) => {
-        this.state.numberOfFunds < 6 ? this.setState({
-            verified: true 
-        }) : console.log("Max trades to place is only 5")
-    }
 
     onCloseModal = () => {
         this.setState({ open: false });
@@ -26,6 +22,27 @@ class VerifyButton extends Component {
     onOpenModal = () => {
         this.setState({ open: true });
     };
+
+    verifyHandler = (numberOfFunds) => {
+        Axios.post('http://localhost:8762/trade/verify', {headers: {}, body: this.props.funds})
+        .then(Response => {
+            Response == `Verified Trades` ? (
+            this.setState({
+                verified: true  
+            })
+        ) : (console.log("Not verified"))
+        }).catch(error => console.log(error))
+    }
+
+    submitHandler = () => {
+        verified == true ? (
+            Axios.post(`http://localhost:8762/trade/exchange`, {headers: {}, body: this.props.funds})
+            .then(Response => {
+                Response.status==201 ? console.log(`Exchanged trades`) : console.log(`Error occurred`)
+            })) : (
+                console.log(`Not verified`)
+            ) 
+    }
 
     render() { 
         const {open} = this.state 

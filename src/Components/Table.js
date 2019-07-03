@@ -164,13 +164,9 @@ class Table extends PureComponent {
                     </tbody>
                 </table>
 
-<<<<<<< HEAD
-                {/* <div class="popup-container">
-=======
                 <AddFund/>
 
                 <div className="popup-container">
->>>>>>> 22eed4292f9dcea0be7241ab76dca1819b7c8d38
                     {this.state.fundForm}
                     <button className = 'verifyTrade' type='submit' onSubmit={this.handleVerify}>
                         VERIFY TRADE

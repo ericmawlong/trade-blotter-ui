@@ -48,14 +48,9 @@ class AddFund extends Component {
     render() {
         const { open } = this.state;
         return (
-<<<<<<< HEAD
-            <div> 
-                <button className="add-fund-btn" onClick={this.onOpenModal}>Add Fund</button>
-=======
             <div>
                 <button className="add-fund-btn" onClick={this.onOpenModal}>+ Add Fund</button>
 
->>>>>>> 22eed4292f9dcea0be7241ab76dca1819b7c8d38
                 <Modal open={open} onClose={this.onCloseModal} center>
                     <form >
                         <div>
